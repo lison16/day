@@ -49,6 +49,13 @@ let rendererConfig = {
         })
       },
       {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({
+            use: ['css-loader?minimize', 'postcss-loader', 'less-loader'],
+            fallback: 'style-loader'
+        })
+      },
+      {
         test: /\.html$/,
         use: 'vue-html-loader'
       },
@@ -133,7 +140,8 @@ let rendererConfig = {
   resolve: {
     alias: {
       '@': path.join(__dirname, '../src/renderer'),
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.esm.js',
+      '_c': path.join(__dirname, '../src/renderer/components')
     },
     extensions: ['.js', '.vue', '.json', '.css', '.node']
   },
