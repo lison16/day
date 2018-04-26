@@ -1,5 +1,5 @@
 <template>
-  <div :class="`${prefix}-backboard`" :style="{background: background}">
+  <div :class="`${prefix}-backboard`" :style="{background: background, padding: `${padding}px`}">
     <slot></slot>
   </div>
 </template>
@@ -27,6 +27,10 @@ export default {
     shape: {
       type: String,
       default: 'circle'
+    },
+    padding: {
+      type: Number,
+      default: 20
     }
   },
   computed: {
