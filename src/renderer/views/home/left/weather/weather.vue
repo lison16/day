@@ -13,6 +13,7 @@
       <div :style="iconStyle" :class="[isUpdating ? 'rotate-animation' : '']">
         <icon @click.native="refresh" :size="18" color="#fff" type="refresh"/>
       </div>
+      <div class="place-name">{{ location }}</div>
     </div>
   </card>
 </template>
@@ -40,6 +41,7 @@ export default {
         temp: '',
         code: ''
       },
+      location: '',
       iconStyle: {
         position: 'absolute',
         right: '-2px',
@@ -56,7 +58,11 @@ export default {
     },
     getWeather () {
       this.isUpdating = true
+      // navigator.geolocation.getCurrentPosition(pos => {
+      //   console.log(pos.coords)
+      // })
       getWeather([116.40, 39.93]).then(res => {
+        this.location = res.data.HeWeather6[0].basic.location
         const weather = res.data.HeWeather6[0].daily_forecast
         let todayData = weather[0]
         let tomorrowData = weather[1]
