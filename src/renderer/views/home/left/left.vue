@@ -1,19 +1,18 @@
 <template>
   <div>
-    <card :height="100" deg="150deg" :colors="[['#F4ADFD'], ['#59B5FC']]">
-      <time-module></time-module>
-    </card>
+    <time-module></time-module>
+    <weather-module style="margin-top:10px;"></weather-module>
   </div>
 </template>
 
 <script>
-import card from '_c/card'
-import timeModule from './time.vue'
+import timeModule from './time/time.vue'
+import weatherModule from './weather/weather.vue'
 export default {
   name: 'homeLeft',
   components: {
-    card,
-    timeModule
+    timeModule,
+    weatherModule
   }
 }
 </script>

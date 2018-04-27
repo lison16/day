@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- <backboard deg="70deg" :colors="[['#F1E1FE'], ['#F8F9FF']]"> -->
+    <!-- <backboard :padding="0" deg="70deg" :colors="[['#F1E1FE'], ['#F8F9FF']]"> -->
       <router-view/>
     <!-- </backboard> -->
   </div>
@@ -35,6 +35,6 @@ html,body{
 #app{
   width: 100%;
   height: 100%;
-  background: #f8f8f9;
+  background: #fff;
 }
 </style>
