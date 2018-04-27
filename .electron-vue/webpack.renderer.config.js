@@ -44,14 +44,14 @@ let rendererConfig = {
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader'
+            use: ['css-loader?minimize', 'autoprefixer-loader'],
+            fallback: 'style-loader'
         })
       },
       {
         test: /\.less$/,
         use: ExtractTextPlugin.extract({
-            use: ['css-loader?minimize', 'postcss-loader', 'less-loader'],
+            use: ['css-loader?minimize', 'autoprefixer-loader', 'less-loader'],
             fallback: 'style-loader'
         })
       },

@@ -1,5 +1,5 @@
 <template>
-	<i class="icon" :class="`ion-${type}`" :style="styles"></i>
+	<i class="do-icon" :class="`do-${type}`" :style="styles"></i>
 </template>
 <script>
 export default {

@@ -4,7 +4,7 @@ import axios from 'axios'
 import App from './App'
 import router from './router'
 import store from './store'
-import 'ionicons/css/ionicons.min.css'
+import './libs/iconfonts/ionicons.less'
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
