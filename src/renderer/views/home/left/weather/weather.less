@@ -1,4 +1,12 @@
 @con-width: 140px;
+@keyframes rotation{
+  from{
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
 .con{
   position: absolute;
   width: @con-width;
@@ -44,5 +52,13 @@
     top: 16px;
     left: 157px;
     background: #fff;
+  }
+  .rotate-animation{
+    i{
+      width: 18px;
+      height: 18px;
+      transform-origin: 44% 51%;
+      animation: rotation 2s infinite linear;
+    }
   }
 }

@@ -10,7 +10,7 @@
         <i>{{ tomorrow['temp'] }}</i>
         <p>白天:<span>{{ tomorrow['day'] }}</span> / 夜间:<span>{{ tomorrow['night'] }}</span></p>
       </div>
-      <div :style="iconStyle">
+      <div :style="iconStyle" :class="[isUpdating ? 'rotate-animation' : '']">
         <icon @click.native="refresh" :size="18" color="#fff" type="refresh"/>
       </div>
     </div>
@@ -46,7 +46,8 @@ export default {
         bottom: '-6px',
         zIndex: 10,
         cursor: 'pointer'
-      }
+      },
+      isUpdating: false
     }
   },
   methods: {
@@ -54,6 +55,7 @@ export default {
       this.getWeather()
     },
     getWeather () {
+      this.isUpdating = true
       getWeather([116.40, 39.93]).then(res => {
         const weather = res.data.HeWeather6[0].daily_forecast
         let todayData = weather[0]
@@ -64,6 +66,7 @@ export default {
         this.tomorrow.day = tomorrowData.cond_txt_d
         this.tomorrow.night = tomorrowData.cond_txt_n
         this.tomorrow.temp = `${tomorrowData.tmp_max}℃ / ${tomorrowData.tmp_min}℃`
+        this.isUpdating = false
       })
     }
   },
