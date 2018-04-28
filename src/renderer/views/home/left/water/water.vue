@@ -67,7 +67,6 @@ export default {
         this.currentDrinkHour = this.hour
         this.drinkWater()
       }
-      this.$db.set('secon', this.secon).write()
     }
   },
   mounted () {
@@ -78,8 +77,7 @@ export default {
     this.$db.defaults({
       todayRestWater: 10,
       currentDrinkHour: 9,
-      todayDrinkList: [],
-      secon: 0
+      todayDrinkList: []
     })
   }
 }
