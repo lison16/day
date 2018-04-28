@@ -1,6 +1,6 @@
 <template>
   <card style="position:relative;" :height="100" deg="150deg" :colors="[['#00EAFF'], ['#3C8CE7']]">
-    <div class="water-title"><h3 class="title">每天10杯水</h3><span class="count">( {{ todayRestWater }} / 10 )</span></div>
+    <div class="water-title"><h3 class="title">每天10杯水</h3><span class="count">( {{ 10 - todayRestWater }} / 10 )</span></div>
     <div class="water-item-wrapper">
       <water-item style="margin-left: 11px;" v-for="i in todayRestWater" :index="i" :key="`water-item-${i}`"></water-item>
     </div>
