@@ -16,3 +16,16 @@ export const getWeather = (poi) => {
     })
   })
 }
+
+export const getNonli = (date) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      url: 'http://v.juhe.cn/calendar/day?date=' + date + '&key=f9b1041d5f94d19eb7eeedf2b49305aa',
+      method: 'get'
+    }).then(res => {
+      resolve(res)
+    }).catch(err => {
+      reject(err)
+    })
+  })
+}

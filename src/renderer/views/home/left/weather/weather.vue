@@ -1,5 +1,5 @@
 <template>
-  <card :height="100" deg="150deg" :colors="[['#59C5F1'], ['#2C87EC']]">
+  <card :height="100" deg="150deg" :colors="[['#FF6FD8'], ['#3813C2']]">
     <div class="weather-module">
       <div class="weather-con today-weather">
         <i>{{ today['temp'] }}</i>

@@ -11,6 +11,8 @@
 import card from '_c/card'
 import moment from 'moment'
 import icon from '_c/icon'
+import { mapMutations } from 'vuex'
+// import { getNonli } from '@/api'
 export default {
   name: 'timeModule',
   components: {
@@ -31,12 +33,21 @@ export default {
       }
     }
   },
+  methods: {
+    ...mapMutations('time', [
+      'changeTime'
+    ])
+  },
   mounted () {
     setInterval(() => {
       this.time = moment().format('h:mm:ss')
       this.apm = moment().format('a')
       this.date = moment().format('MMMM Do YYYY')
+      this.changeTime(moment().format('H:mm:ss').split(':'))
     }, 1000)
+    // getNonli().then(res => {
+    //   console.log(res)
+    // })
   }
 }
 </script>
