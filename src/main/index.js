@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import './events'
 
 if (process.env.NODE_ENV !== 'development') {
@@ -27,6 +27,11 @@ function createWindow () {
 
   mainWindow.on('closed', () => {
     mainWindow = null
+  })
+
+  mainWindow.on('quit', (e) => {
+    e.preventDefault()
+    ipcMain.send('app-before-quit')
   })
 }
 

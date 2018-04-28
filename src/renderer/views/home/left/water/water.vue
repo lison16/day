@@ -48,17 +48,10 @@ export default {
       })
       notification.on('buttonClicked', (text, buttonIndex, options) => {
         if (text === 'Complete') {
-          this.setLocal()
+          this.todayRestWater--
         }
         notification.close()
       })
-    },
-    setLocal () {
-      this.$db.get('todayDrinkList').push({
-        time: this.time.join(':')
-      }).write()
-      this.$db.set('todayRestWater', --this.todayRestWater).write()
-      this.$db.set('currentDrinkHour', this.currentDrinkHour).write()
     }
   },
   watch: {
@@ -68,17 +61,6 @@ export default {
         this.drinkWater()
       }
     }
-  },
-  mounted () {
-    const currentDrinkHour = this.$db.get('currentDrinkHour').value()
-    const todayRestWater = this.$db.get('todayRestWater').value()
-    if (currentDrinkHour) this.currentDrinkHour = parseInt(currentDrinkHour)
-    if (todayRestWater) this.todayRestWater = parseInt(todayRestWater)
-    this.$db.defaults({
-      todayRestWater: 10,
-      currentDrinkHour: 9,
-      todayDrinkList: []
-    })
   }
 }
 </script>
