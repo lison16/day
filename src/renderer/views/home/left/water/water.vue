@@ -57,7 +57,7 @@ export default {
       this.$db.get('todayDrinkList').push({
         time: this.time.join(':')
       }).write()
-      this.$db.set('todayRestWater', --this.restWater).write()
+      this.$db.set('todayRestWater', --this.todayRestWater).write()
       this.$db.set('currentDrinkHour', this.currentDrinkHour).write()
     }
   },
