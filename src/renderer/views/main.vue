@@ -42,6 +42,9 @@ export default {
   //   top: 0;
   //   transform: none;
   // }
+  background-image: url(./bg.jpg);
+  background-size: 100% 100%;
+  background-position: -230px -130px;
   .main{
     position: absolute;
     width: 0;

@@ -60,22 +60,42 @@ export default {
     const halfSize = size / 2
     let draw = SVG('center_btn').size(size, size)
 
+    const centerMask = draw.circle(74).center(halfSize, halfSize).fill('none').stroke({ color: '#E9EAEA', width: 6 })
+
+    /**
+     * 创建四个彩色椭圆然后旋转，形成光环
+     */
     let ellipse1 = draw.ellipse(80, 72).center(halfSize, halfSize).fill('rgba(255, 52, 92, .5)')
     let ellipse2 = draw.ellipse(80, 72).center(halfSize, halfSize).fill('rgba(85, 255, 100, .5)').rotate(45)
     let ellipse3 = draw.ellipse(80, 72).center(halfSize, halfSize).fill('rgba(38, 105, 255, .5)').rotate(90)
     let ellipse4 = draw.ellipse(80, 72).center(halfSize, halfSize).fill('rgba(185, 92, 255, .5)').rotate(135)
-
     ellipse1.animate(4000).rotate(360).loop()
     ellipse2.animate(4000).rotate(-315).loop()
     ellipse3.animate(4000).rotate(450).loop()
     ellipse4.animate(4000).rotate(495).loop()
 
     /**
+     * 扣掉四彩光环中间
+     */
+    const group = draw.group()
+    group.add(ellipse1)
+    group.add(ellipse2)
+    group.add(ellipse3)
+    group.add(ellipse4)
+    group.maskWith(centerMask)
+
+    /**
      * 按钮中间底部背景原
      */
-    draw.circle(68).fill('#fff').center(halfSize, halfSize)
+    draw.circle(68).fill('#fff').center(halfSize, halfSize).fill({ color: '#fff', opacity: 0.3 }).doc().defs()
 
+    /**
+     * 喝水进度底部灰色环
+     */
     draw.circle(60).center(halfSize, halfSize).stroke({ color: '#E9EAEA', width: 2 }).fill('none')
+    /**
+     * 喝水进度渐变
+     */
     const waterLinear = draw.gradient('linear', function (stop) {
       stop.at(0, '#130CB7')
       stop.at(1, '#52E5E7')
@@ -83,7 +103,7 @@ export default {
     /**
      * 使用stroke-dasharray虚线属性来实现进度
      */
-    this.drinkProgress = draw.circle(this.waterProgressRadius * 2).center(halfSize, halfSize).rotate(-90).stroke({ color: waterLinear, opacity: 0.8, width: 4, dasharray: `${this.waterProgress}, ${this.waterProgressLast}`, linecap: 'round' }).fill('none')
+    this.drinkProgress = draw.circle(this.waterProgressRadius * 2).center(halfSize, halfSize).rotate(-90).stroke({ color: waterLinear, width: 4, dasharray: `${this.waterProgress}, ${this.waterProgressLast}`, linecap: 'round' }).fill('none')
     console.log(this.drinkProgress)
   }
 }
