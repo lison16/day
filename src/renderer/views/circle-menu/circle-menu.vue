@@ -1,18 +1,25 @@
 <template>
   <div class="menu-wrapper">
     <div id="menu_main"></div>
+    <menu-item v-for="(item, index) in menuList" :key="`menu-item-${index}`" :item-index="index" :item="item"/>
   </div>
 </template>
 
 <script>
 import SVG from 'svg.js'
+import menuItem from './menu-item.vue'
+import menuList from './list'
 // const path = require('path')
 export default {
   name: 'ciecleMenu',
+  components: {
+    menuItem
+  },
   data () {
     return {
       draw: {},
-      size: 300
+      size: 300,
+      menuList: menuList
     }
   },
   computed: {
