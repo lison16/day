@@ -1,17 +1,15 @@
 <template>
   <div id="app">
-    <!-- <backboard :padding="0" deg="70deg" :colors="[['#F1E1FE'], ['#F8F9FF']]"> -->
-      <router-view/>
-    <!-- </backboard> -->
+    <main-con/>
   </div>
 </template>
 
 <script>
-import backboard from '_c/backboard'
+import mainCon from '@/views/main.vue'
 export default {
   name: 'day',
   components: {
-    backboard
+    mainCon
   }
 }
 </script>
@@ -35,6 +33,6 @@ html,body{
 #app{
   width: 100%;
   height: 100%;
-  background: #F8F8F8;
+  background: transparent;
 }
 </style>
