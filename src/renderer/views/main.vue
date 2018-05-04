@@ -1,7 +1,12 @@
 <template>
   <div class="main-con">
     <div class="main" id="main">
-      <center :has-message="hasMessage" :water-drinked="waterDrinked"/>
+      <center
+        :has-message="hasMessage"
+        :water-drinked="waterDrinked"
+        @on-click-message="handleClickMessage"
+        @on-show-menu="handleShowMenu"
+      />
     </div>
   </div>
 </template>
@@ -16,6 +21,14 @@ export default {
     return {
       waterDrinked: 0,
       hasMessage: false
+    }
+  },
+  methods: {
+    handleClickMessage () {
+      console.log(111)
+    },
+    handleShowMenu () {
+      console.log(222)
     }
   },
   mounted () {

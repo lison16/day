@@ -145,6 +145,15 @@ export default {
      * 消息图标
      */
     this.message = draw.image(path.join(__dirname, '../../assets/images/message.svg'), 30, 30).center(halfSize, halfSize)
+
+    /**
+     * 中间做点击用的原色透明遮盖
+     */
+    let clickLay = draw.circle(68).center(halfSize, halfSize).fill({ color: '#fff', opacity: 0 }).addClass('center-pointer')
+    clickLay.click(() => {
+      if (this.hasMessage) this.$emit('on-click-message')
+      else this.$emit('on-show-menu')
+    })
   }
 }
 </script>
@@ -160,6 +169,9 @@ export default {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+  }
+  .center-pointer{
+    cursor: pointer;
   }
 }
 </style>
