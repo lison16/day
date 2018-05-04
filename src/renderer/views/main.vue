@@ -20,7 +20,7 @@ export default {
   mounted () {
     setInterval(() => {
       if (this.waterDrinked < 8) this.waterDrinked++
-    }, 2000)
+    }, 200)
   }
 }
 </script>

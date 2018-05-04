@@ -26,6 +26,7 @@ export default {
     return {
       size: 80,
       draw: {},
+      drinkBackCircle: {},
       drinkProgress: {},
       waterProgressRadius: 30
     }
@@ -76,6 +77,8 @@ export default {
     },
     drinkTotal () {
       document.getElementById('audio_dududu').play()
+      this.drinkProgress.animate().stroke({ opacity: 0 }).radius(40)
+      this.drinkBackCircle.stroke({ opacity: 0 })
     }
   },
   mounted () {
@@ -105,19 +108,19 @@ export default {
     group.add(ellipse4)
     group.maskWith(centerMask)
     // 按钮中间底部背景原
-    draw.circle(68).fill('#fff').center(halfSize, halfSize).fill({ color: '#fff', opacity: 0.4 })
+    draw.circle(68).center(halfSize, halfSize).fill({ color: '#fff', opacity: 0.4 })
 
     /**
      * 喝水进度底部灰色环
      */
-    draw.circle(60).center(halfSize, halfSize).stroke({ color: '#E9EAEA', width: 2 }).fill('none')
+    this.drinkBackCircle = draw.circle(60).center(halfSize, halfSize).stroke({ color: '#E9EAEA', width: 2 }).fill('none')
     // 喝水进度渐变
     const waterLinear = draw.gradient('linear', function (stop) {
       stop.at(0, '#130CB7')
       stop.at(1, '#52E5E7')
     }).from(0, 0).to(0, 1)
     // 使用stroke-dasharray虚线属性来实现进度
-    this.drinkProgress = draw.circle(this.waterProgressRadius * 2).center(halfSize, halfSize).rotate(-90).stroke({ color: waterLinear, width: 4, dasharray: `${this.waterProgress}, ${this.waterProgressLast}`, linecap: 'round' }).fill('none')
+    this.drinkProgress = draw.circle(this.waterProgressRadius * 2).center(halfSize, halfSize).rotate(-90).stroke({ color: waterLinear, opacity: 1, width: 4, dasharray: `${this.waterProgress}, ${this.waterProgressLast}`, linecap: 'round' }).fill('none')
 
     // let pointView = SVG('complete_water').size(200, 200)
     // let halfSize = this.halfSize
