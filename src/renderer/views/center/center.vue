@@ -6,6 +6,55 @@
 import SVG from 'svg.js'
 export default {
   name: 'centerBtn',
+  props: {
+    waterDrinked: {
+      type: Number,
+      default: 0
+    },
+    waterOneDay: {
+      type: Number,
+      default: 8
+    }
+  },
+  data () {
+    return {
+      drinkProgress: {},
+      waterProgressRadius: 30
+    }
+  },
+  computed: {
+    /**
+     * @returns 喝水进度环的周长
+     */
+    circlePerimeter () {
+      return 2 * Math.PI * this.waterProgressRadius
+    },
+    /**
+     * @returns 喝水进度的长度
+     */
+    waterProgress () {
+      return this.circlePerimeter * (this.waterDrinked / this.waterOneDay)
+    },
+    /**
+     * @returns 剩下的进度的长度
+     */
+    waterProgressLast () {
+      return this.circlePerimeter - this.waterProgress
+    }
+  },
+  watch: {
+    waterDrinked (newVal, oldVal) {
+      const duration = 200 / (newVal - oldVal)
+      /**
+       * @description 最后一个进度是正式的进度，中间三个都是动画效果
+       */
+      this.drinkProgress
+        .animate(duration, '<').stroke({ dasharray: `${this.waterProgress + 6}, ${this.waterProgressLast - 6}` })
+        .animate(50).stroke({ dasharray: `${this.waterProgress - 4}, ${this.waterProgressLast + 4}` })
+        .animate(50).stroke({ dasharray: `${this.waterProgress + 2}, ${this.waterProgressLast - 2}` })
+        .animate(50).stroke({ dasharray: `${this.waterProgress}, ${this.waterProgressLast}` })
+    }
+  },
   mounted () {
     const size = 80
     const halfSize = size / 2
@@ -21,11 +70,21 @@ export default {
     ellipse3.animate(4000).rotate(450).loop()
     ellipse4.animate(4000).rotate(495).loop()
 
-    let circle = draw.circle(68).fill('#fff').center(halfSize, halfSize)
-    console.log(circle)
+    /**
+     * 按钮中间底部背景原
+     */
+    draw.circle(68).fill('#fff').center(halfSize, halfSize)
 
-    // let water = draw.path('M10 10 C 20 20, 40 20, 50 10').fill('none').stroke({ color: '#f06', width: 4, linecap: 'round', linejoin: 'round' })
-    // console.log(water)
+    draw.circle(60).center(halfSize, halfSize).stroke({ color: '#E9EAEA', opacity: 0.8, width: 2 }).fill('none')
+    const waterLinear = draw.gradient('linear', function (stop) {
+      stop.at(0, '#f06')
+      stop.at(1, '#0f9')
+    })
+    /**
+     * 使用stroke-dasharray虚线属性来实现进度
+     */
+    this.drinkProgress = draw.circle(this.waterProgressRadius * 2).center(halfSize, halfSize).rotate(-90).stroke({ color: waterLinear, opacity: 0.8, width: 4, dasharray: `${this.waterProgress}, ${this.waterProgressLast}`, linecap: 'round' }).fill('none')
+    console.log(this.drinkProgress)
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="main-con">
     <div class="main" id="main">
-      <center/>
+      <center :water-drinked="waterDrinked"/>
     </div>
   </div>
 </template>
@@ -11,6 +11,16 @@ import center from './center'
 export default {
   components: {
     center
+  },
+  data () {
+    return {
+      waterDrinked: 0
+    }
+  },
+  mounted () {
+    setInterval(() => {
+      if (this.waterDrinked <= 6) this.waterDrinked++
+    }, 1000)
   }
 }
 </script>
