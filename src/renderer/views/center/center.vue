@@ -75,11 +75,11 @@ export default {
      */
     draw.circle(68).fill('#fff').center(halfSize, halfSize)
 
-    draw.circle(60).center(halfSize, halfSize).stroke({ color: '#E9EAEA', opacity: 0.8, width: 2 }).fill('none')
+    draw.circle(60).center(halfSize, halfSize).stroke({ color: '#E9EAEA', width: 2 }).fill('none')
     const waterLinear = draw.gradient('linear', function (stop) {
-      stop.at(0, '#f06')
-      stop.at(1, '#0f9')
-    })
+      stop.at(0, '#130CB7')
+      stop.at(1, '#52E5E7')
+    }).from(0, 0).to(0, 1)
     /**
      * 使用stroke-dasharray虚线属性来实现进度
      */

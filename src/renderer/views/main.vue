@@ -19,7 +19,7 @@ export default {
   },
   mounted () {
     setInterval(() => {
-      if (this.waterDrinked <= 6) this.waterDrinked++
+      if (this.waterDrinked < 8) this.waterDrinked++
     }, 1000)
   }
 }
