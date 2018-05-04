@@ -1,26 +1,25 @@
 <template>
   <div class="main-con">
     <div class="main" id="main">
-      <center
-        :has-message="hasMessage"
-        :water-drinked="waterDrinked"
-        @on-click-message="handleClickMessage"
-        @on-show-menu="handleShowMenu"
-      />
+      <circle-menu :show="showMenu"></circle-menu>
+      <center :has-message="hasMessage" :water-drinked="waterDrinked" @on-click-message="handleClickMessage" @on-show-menu="handleShowMenu"/>
     </div>
   </div>
 </template>
 
 <script>
 import center from './center'
+import circleMenu from './circle-menu'
 export default {
   components: {
-    center
+    center,
+    circleMenu
   },
   data () {
     return {
       waterDrinked: 0,
-      hasMessage: false
+      hasMessage: false,
+      showMenu: true
     }
   },
   methods: {
@@ -28,7 +27,7 @@ export default {
       console.log(111)
     },
     handleShowMenu () {
-      console.log(222)
+      this.showMenu = !this.showMenu
     }
   },
   mounted () {
