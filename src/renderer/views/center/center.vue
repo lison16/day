@@ -3,6 +3,7 @@
     <div id="center_btn">
       <audio id="audio_ding" src="src/renderer/assets/audios/ding.mp3"/>
       <audio id="audio_dududu" src="src/renderer/assets/audios/dududu.mp3"/>
+      <audio id="audio_message" src="src/renderer/assets/audios/message.mp3"/>
     </div>
     <div id="complete_water"></div>
   </div>
@@ -10,6 +11,8 @@
 
 <script>
 import SVG from 'svg.js'
+const path = require('path')
+let centerTimer = null
 export default {
   name: 'centerBtn',
   props: {
@@ -20,6 +23,10 @@ export default {
     waterOneDay: {
       type: Number,
       default: 8
+    },
+    hasMessage: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -28,7 +35,8 @@ export default {
       draw: {},
       drinkBackCircle: {},
       drinkProgress: {},
-      waterProgressRadius: 30
+      waterProgressRadius: 30,
+      message: {}
     }
   },
   computed: {
@@ -69,6 +77,17 @@ export default {
           if (newVal === this.waterOneDay) this.drinkTotal()
           else this.drinkComplete()
         })
+    },
+    hasMessage (val) {
+      clearInterval(centerTimer)
+      if (val) {
+        document.getElementById('audio_message').play()
+        centerTimer = setInterval(() => {
+          this.message.animate(50).rotate(14).animate(100).rotate(-14).animate(100).rotate(14).animate(100).rotate(-14).animate(100).rotate(14).animate(50).rotate(0)
+        }, 1000)
+      } else {
+        this.message.stop()
+      }
     }
   },
   methods: {
@@ -122,9 +141,10 @@ export default {
     // 使用stroke-dasharray虚线属性来实现进度
     this.drinkProgress = draw.circle(this.waterProgressRadius * 2).center(halfSize, halfSize).rotate(-90).stroke({ color: waterLinear, opacity: 1, width: 4, dasharray: `${this.waterProgress}, ${this.waterProgressLast}`, linecap: 'round' }).fill('none')
 
-    // let pointView = SVG('complete_water').size(200, 200)
-    // let halfSize = this.halfSize
-    // 喝完全部水后动画
+    /**
+     * 消息图标
+     */
+    this.message = draw.image(path.join(__dirname, '../../assets/images/message.svg'), 30, 30).center(halfSize, halfSize)
   }
 }
 </script>

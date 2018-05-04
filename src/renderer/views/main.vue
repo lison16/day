@@ -1,7 +1,7 @@
 <template>
   <div class="main-con">
     <div class="main" id="main">
-      <center :water-drinked="waterDrinked"/>
+      <center :has-message="hasMessage" :water-drinked="waterDrinked"/>
     </div>
   </div>
 </template>
@@ -14,13 +14,15 @@ export default {
   },
   data () {
     return {
-      waterDrinked: 0
+      waterDrinked: 0,
+      hasMessage: false
     }
   },
   mounted () {
     setInterval(() => {
-      if (this.waterDrinked < 8) this.waterDrinked++
+      if (this.waterDrinked < 7) this.waterDrinked++
     }, 200)
+    this.hasMessage = true
   }
 }
 </script>
