@@ -56,6 +56,7 @@
     "axios": "^0.16.1",
     "electron-notifications": "^1.0.0",
     "moment": "^2.22.1",
+    "svg.filter.js": "^2.0.2",
     "svg.js": "^2.6.4",
     "vue": "^2.3.3",
     "vue-electron": "^1.0.6",

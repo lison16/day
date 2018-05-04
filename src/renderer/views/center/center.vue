@@ -1,5 +1,7 @@
 <template>
-  <div id="center_btn"></div>
+  <div id="center_btn">
+    <audio id="audio_ding" src="src/renderer/assets/audios/ding.mp3"/>
+  </div>
 </template>
 
 <script>
@@ -53,6 +55,18 @@ export default {
         .animate(50).stroke({ dasharray: `${this.waterProgress - 4}, ${this.waterProgressLast + 4}` })
         .animate(50).stroke({ dasharray: `${this.waterProgress + 2}, ${this.waterProgressLast - 2}` })
         .animate(50).stroke({ dasharray: `${this.waterProgress}, ${this.waterProgressLast}` })
+        .after(() => {
+          if (newVal === this.waterOneDay) this.drinkTotal()
+          else this.drinkComplete()
+        })
+    }
+  },
+  methods: {
+    drinkComplete () {
+      document.getElementById('audio_ding').play()
+    },
+    drinkTotal () {
+      //
     }
   },
   mounted () {
@@ -87,7 +101,7 @@ export default {
     /**
      * 按钮中间底部背景原
      */
-    draw.circle(68).fill('#fff').center(halfSize, halfSize).fill({ color: '#fff', opacity: 0.3 }).doc().defs()
+    draw.circle(68).fill('#fff').center(halfSize, halfSize).fill({ color: '#fff', opacity: 0.4 })
 
     /**
      * 喝水进度底部灰色环
@@ -104,7 +118,6 @@ export default {
      * 使用stroke-dasharray虚线属性来实现进度
      */
     this.drinkProgress = draw.circle(this.waterProgressRadius * 2).center(halfSize, halfSize).rotate(-90).stroke({ color: waterLinear, width: 4, dasharray: `${this.waterProgress}, ${this.waterProgressLast}`, linecap: 'round' }).fill('none')
-    console.log(this.drinkProgress)
   }
 }
 </script>

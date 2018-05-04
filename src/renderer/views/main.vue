@@ -20,7 +20,7 @@ export default {
   mounted () {
     setInterval(() => {
       if (this.waterDrinked < 8) this.waterDrinked++
-    }, 1000)
+    }, 3000)
   }
 }
 </script>
@@ -30,18 +30,6 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
-  // & * {
-  //   position: absolute;
-  //   left: 50%;
-  //   top: 50%;
-  //   transform: translate(-50%, -50%);
-  // }
-  // & svg * {
-  //   position: relative;
-  //   left: 0;
-  //   top: 0;
-  //   transform: none;
-  // }
   background-image: url(./bg.jpg);
   background-size: 100% 100%;
   background-position: -230px -130px;
