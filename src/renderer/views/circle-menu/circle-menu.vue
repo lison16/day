@@ -8,14 +8,10 @@
 
 <script>
 import SVG from 'svg.js'
-import menuItem from './menu-item.vue'
 import menuList from './list'
 // const path = require('path')
 export default {
   name: 'ciecleMenu',
-  components: {
-    menuItem
-  },
   props: {
     show: {
       type: Boolean,
