@@ -106,8 +106,6 @@ export default {
     let draw = SVG('center_btn').size(size, size)
     this.draw = draw
 
-    const centerMask = draw.circle(74).center(halfSize, halfSize).fill('none').stroke({ color: '#E9EAEA', width: 6 })
-
     /**
      * 创建四个彩色椭圆然后旋转，形成光环
      */
@@ -119,13 +117,6 @@ export default {
     ellipse2.animate(4000).rotate(-315).loop()
     ellipse3.animate(4000).rotate(450).loop()
     ellipse4.animate(4000).rotate(495).loop()
-    // 扣掉四彩光环中间
-    const group = draw.group()
-    group.add(ellipse1)
-    group.add(ellipse2)
-    group.add(ellipse3)
-    group.add(ellipse4)
-    group.maskWith(centerMask)
     // 按钮中间底部背景原
     const backRadial = draw.gradient('radial', function (stop) {
       stop.at(0, '#fff')
