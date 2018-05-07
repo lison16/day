@@ -39,7 +39,6 @@ export default {
         })
       } else {
         // 展开
-        console.log(this.mainCircle)
         this.mainCircle.stop().animate(40).scale(1)
         SVG.select('path.menu-item').stop().each(function (i, children) {
           children[i].animate(200, '>', i * 20).plot(`M${pos + 3} ${pos - 2} L${pos} 0 a${radius} ${radius} 45 0 1 ${line2pos + 6} ${pos - line2pos - 15} L${pos + 5} ${pos - 5} z`)
