@@ -10,5 +10,25 @@ export default [
   {
     name: 'calendar',
     title: '公农日历'
+  },
+  {
+    name: 'weather',
+    title: '今明天气'
+  },
+  {
+    name: 'calendar',
+    title: '公农日历'
+  },
+  {
+    name: 'weather',
+    title: '今明天气'
+  },
+  {
+    name: 'calendar',
+    title: '公农日历'
+  },
+  {
+    name: 'calendar',
+    title: '公农日历'
   }
 ]
