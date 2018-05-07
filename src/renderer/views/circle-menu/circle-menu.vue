@@ -36,9 +36,17 @@ export default {
       const radius = this.radius
       const line2pos = this.line2pos
       if (state) {
-        SVG.select('path.menu-item').stop().animate(200, '>').plot(`M${pos} ${pos} L${pos} ${pos} a${0} ${0} 45 0 1 ${0} ${0} L${pos + 5} ${pos - 5} z`)
+        // 收缩
+        SVG.select('path.menu-item').each(function (i, children) {
+          children[i].animate(200, '>', (8 - i) * 20).plot(`M${pos} ${pos} L${pos} ${pos} a${0} ${0} 45 0 1 ${0} ${0} L${pos + 5} ${pos - 5} z`)
+        })
       } else {
-        SVG.select('path.menu-item').stop().animate(200, '>').plot(`M${pos + 3} ${pos - 2} L${pos} 6 a${radius} ${radius} 45 0 1 ${line2pos} ${pos - line2pos - 15} L${pos + 5} ${pos - 5} z`)
+        // 展开
+        SVG.select('path.menu-item').stop().each(function (i, children) {
+          children[i].animate(200, '>', i * 20).plot(`M${pos + 3} ${pos - 2} L${pos} 0 a${radius} ${radius} 45 0 1 ${line2pos + 6} ${pos - line2pos - 15} L${pos + 5} ${pos - 5} z`)
+            .animate(100, '>').plot(`M${pos + 3} ${pos - 2} L${pos} 12 a${radius} ${radius} 45 0 1 ${line2pos - 5} ${pos - line2pos - 18} L${pos + 5} ${pos - 5} z`)
+            .animate(100, '>').plot(`M${pos + 3} ${pos - 2} L${pos} 6 a${radius} ${radius} 45 0 1 ${line2pos} ${pos - line2pos - 15} L${pos + 5} ${pos - 5} z`)
+        })
       }
     }
   },
