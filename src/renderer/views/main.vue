@@ -34,7 +34,7 @@ export default {
     setInterval(() => {
       if (this.waterDrinked < 7) this.waterDrinked++
     }, 200)
-    this.hasMessage = true
+    this.hasMessage = false
   }
 }
 </script>
