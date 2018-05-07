@@ -127,12 +127,17 @@ export default {
     group.add(ellipse4)
     group.maskWith(centerMask)
     // 按钮中间底部背景原
-    draw.circle(68).center(halfSize, halfSize).fill({ color: '#fff', opacity: 0.4 })
+    const backRadial = draw.gradient('radial', function (stop) {
+      stop.at(0, '#fff')
+      stop.at(0.6, '#fff')
+      stop.at(1, '#D9D9D9')
+    })
+    draw.circle(68).center(halfSize, halfSize).fill(backRadial).addClass('center-back-circle')
 
     /**
      * 喝水进度底部灰色环
      */
-    this.drinkBackCircle = draw.circle(60).center(halfSize, halfSize).stroke({ color: '#E9EAEA', width: 2 }).fill('none')
+    this.drinkBackCircle = draw.circle(60).center(halfSize, halfSize).stroke({ color: '#fff', width: 2 }).fill('none')
     // 喝水进度渐变
     const waterLinear = draw.gradient('linear', function (stop) {
       stop.at(0, '#130CB7')
@@ -164,6 +169,10 @@ export default {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  .center-back-circle{
+    box-shadow: 3px 3px 10px 3px rgba(0, 0, 0, 1) inset;
+    background: red;
+  }
   & > div{
     position: absolute;
     left: 50%;
