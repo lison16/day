@@ -26,7 +26,7 @@ export default {
 
       const line2pos = this.radius * Math.sin(45 * Math.PI / 180)
 
-      draw.path(`M${pos} ${pos} L${pos} 0 a${this.radius} ${this.radius} 45 0 1 ${line2pos} ${pos - line2pos} L${pos} ${pos} z`).fill('#ee0000')
+      draw.path(`M${pos} ${pos} L${pos} 0 a${this.radius} ${this.radius} 45 0 1 ${line2pos - 4} ${pos - line2pos - 4} L${pos} ${pos} z`).fill('#ee0000').rotate(this.itemIndex * 45, pos, pos)
     })
   }
 }
