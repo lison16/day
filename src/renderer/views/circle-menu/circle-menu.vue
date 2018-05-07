@@ -85,8 +85,8 @@ export default {
 
     menuList.forEach((item, i) => {
       let itemGradient = childDraw.gradient('radial', stop => {
-        stop.at(0, '#fff', 2)
-        stop.at(1, '#D9D9D9', 1)
+        stop.at(0, '#fff', 0.2)
+        stop.at(1, '#D9D9D9', 0.1)
       })
       const itemMenu = childDraw.path(`M${pos} ${pos} L${pos} ${pos} a${0} ${0} 45 0 1 ${0} ${0} L${pos + 5} ${pos - 5} z`).fill(itemGradient).rotate(i * 45, pos, pos - 1).addClass('menu-item')
       itemMenu.on('mouseover', function () {
