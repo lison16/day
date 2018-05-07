@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div :id="`menu_item_${itemIndex}`"></div>
+  <div class="menu-item-wrapper" :style="{width: `${radius * 2}px`, height: `${radius * 2}px`}">
+    <div class="menu-item" :id="`menu_item_${itemIndex}`"></div>
   </div>
 </template>
 
@@ -10,7 +10,8 @@ export default {
   name: 'menuItem',
   props: {
     itemIndex: Number,
-    item: Object
+    item: Object,
+    radius: Number
   },
   data () {
     return {
@@ -18,14 +19,22 @@ export default {
     }
   },
   mounted () {
-    let draw = SVG(`menu_item_${this.itemIndex}`)
-    this.draw = draw
+    this.$nextTick(() => {
+      let draw = SVG(`menu_item_${this.itemIndex}`)
+      this.draw = draw
+      const pos = this.radius
 
-    draw.ellipse()
+      const line2pos = this.radius * Math.sin(45 * Math.PI / 180)
+
+      draw.path(`M${pos} ${pos} L${pos} 0 a${this.radius} ${this.radius} 45 0 1 ${line2pos} ${pos - line2pos} L${pos} ${pos} z`).fill('#ee0000')
+    })
   }
 }
 </script>
 
-<style>
-
+<style lang="less">
+.menu-item{
+  height: 100%;
+  width: 100%;
+}
 </style>

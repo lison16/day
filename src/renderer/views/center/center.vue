@@ -12,7 +12,6 @@
 <script>
 import SVG from 'svg.js'
 const path = require('path')
-let centerTimer = null
 export default {
   name: 'centerBtn',
   props: {
@@ -36,7 +35,8 @@ export default {
       drinkBackCircle: {},
       drinkProgress: {},
       waterProgressRadius: 30,
-      message: {}
+      message: {},
+      centerTimer: null
     }
   },
   computed: {
@@ -79,10 +79,10 @@ export default {
         })
     },
     hasMessage (val) {
-      clearInterval(centerTimer)
+      clearInterval(this.centerTimer)
       if (val) {
         document.getElementById('audio_message').play()
-        centerTimer = setInterval(() => {
+        this.centerTimer = setInterval(() => {
           this.message.animate(50).rotate(14).animate(100).rotate(-14).animate(100).rotate(14).animate(100).rotate(-14).animate(100).rotate(14).animate(50).rotate(0)
         }, 1000)
       } else {
