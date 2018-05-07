@@ -1,7 +1,6 @@
 <template>
   <div class="menu-wrapper">
     <div id="menu_main"></div>
-    <!-- <menu-item v-for="(item, index) in menuList" :key="`menu-item-${index}`" :radius="halfSize - 10" :item-index="index" :item="item"/> -->
     <div id="menu_item"></div>
   </div>
 </template>
